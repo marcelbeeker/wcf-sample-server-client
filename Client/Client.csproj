@@ -56,11 +56,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Properties\DataSources\Server.PatientReminder.datasource" />
     <None Include="Service References\ServiceReference1\ServerService.wsdl" />
     <None Include="Service References\ServiceReference1\ServerService.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceReference1\ServerService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference1\ServerService2.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -81,6 +85,12 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Server\Server.csproj">
+      <Project>{FF1C5AD1-8FF0-4780-9E56-A205D09A22A3}</Project>
+      <Name>Server</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

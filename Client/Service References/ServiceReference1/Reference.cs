@@ -15,17 +15,8 @@ namespace Client.ServiceReference1 {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IServerService")]
     public interface IServerService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServerService/Test", ReplyAction="http://tempuri.org/IServerService/TestResponse")]
-        bool Test(string input);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServerService/StoreSession", ReplyAction="http://tempuri.org/IServerService/StoreSessionResponse")]
-        void StoreSession(string sessionName);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServerService/GetSessionName", ReplyAction="http://tempuri.org/IServerService/GetSessionNameResponse")]
-        string GetSessionName();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServerService/SendByteData", ReplyAction="http://tempuri.org/IServerService/SendByteDataResponse")]
-        void SendByteData(byte[] data);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServerService/GetReminders", ReplyAction="http://tempuri.org/IServerService/GetRemindersResponse")]
+        Server.PatientReminder GetReminders();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -55,20 +46,8 @@ namespace Client.ServiceReference1 {
                 base(binding, remoteAddress) {
         }
         
-        public bool Test(string input) {
-            return base.Channel.Test(input);
-        }
-        
-        public void StoreSession(string sessionName) {
-            base.Channel.StoreSession(sessionName);
-        }
-        
-        public string GetSessionName() {
-            return base.Channel.GetSessionName();
-        }
-        
-        public void SendByteData(byte[] data) {
-            base.Channel.SendByteData(data);
+        public Server.PatientReminder GetReminders() {
+            return base.Channel.GetReminders();
         }
     }
 }

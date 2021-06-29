@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Client.ServiceReference1;
+﻿using Client.ServiceReference1;
+using Server;
+using System;
 
 namespace Client
 {
@@ -16,16 +14,19 @@ namespace Client
             //To add new right click on project "Add Service Reference"
             //Update right click on "Service References->ServiceReference1" then "Update Service Reference"
             ServerServiceClient client = new ServerServiceClient("BasicHttpBinding_IServerService", "http://localhost:8000/ServerService");
-            var result = client.Test("test text");
 
-            Console.WriteLine("Session Name:");
-            var sessionName = Console.ReadLine();
-            client.StoreSession(sessionName);
-            Console.WriteLine(client.GetSessionName());
-            Console.ReadLine();
+            var reminders = client.GetReminders();
 
-            client.SendByteData(new byte[100000]);
-            Console.WriteLine("Uploaded");
+            foreach (var reminder in reminders.Reminders)
+            {
+                if (reminder is AppoinmentSmsSend)
+                {
+                    var appointmentSmsSend = reminder as AppoinmentSmsSend;
+
+                    Console.WriteLine(appointmentSmsSend.Phonenumber);
+                    Console.WriteLine(appointmentSmsSend.ReminderAction.ToString());
+                }
+            }
 
             Console.ReadLine();
             client.Close();

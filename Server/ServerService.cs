@@ -1,33 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Server
 {
     public class ServerService : IServerService
     {
-        private string _sessionName = "";
-
-        public void StoreSession(string sessionName)
+        public PatientReminder GetReminders()
         {
-            _sessionName = sessionName;
-        }
+            var reminders = new PatientReminder()
+            {
+                Id = "1",
+                Reminders = new List<AppoinmentSmsSend>()
+                {
+                    new AppoinmentSmsSend()
+                    {
+                        Phonenumber = "123456789",
+                        ReminderAction = ReminderActionType.AppointmentSmsSend
+                    }
+                }
+            };
 
-        public string GetSessionName()
-        {
-            return _sessionName;
-        }
-
-        public void SendByteData(byte[] data)
-        {
-            Console.WriteLine("Received: {0}", data.Length);
-        }
-
-        public bool Test(string input)
-        {
-            Console.WriteLine("Test: {0}", input);
-            return true;
+            return reminders;
         }
     }
 }

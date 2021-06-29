@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.ServiceModel;
-using System.Text;
+﻿using System.ServiceModel;
 
 namespace Server
 {
@@ -10,15 +6,6 @@ namespace Server
     interface IServerService
     {
         [OperationContract]
-        bool Test(string input);
-
-        [OperationContract]
-        void StoreSession(string sessionName);
-
-        [OperationContract]
-        string GetSessionName();
-
-        [OperationContract]
-        void SendByteData(byte[] data);
+        PatientReminder GetReminders();
     }
 }
