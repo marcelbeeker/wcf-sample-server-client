@@ -9,12 +9,17 @@ namespace Server
             var reminders = new PatientReminder()
             {
                 Id = "1",
-                Reminders = new List<AppoinmentSmsSend>()
+                Reminders = new List<ReminderBase>()
                 {
                     new AppoinmentSmsSend()
                     {
                         Phonenumber = "123456789",
                         ReminderAction = ReminderActionType.AppointmentSmsSend
+                    },
+                    new AppointmentEmailSend()
+                    {
+                        Email = "test@test.nl",
+                        ReminderAction = ReminderActionType.AppointmentEmailSend,
                     }
                 }
             };

@@ -1,6 +1,7 @@
 ﻿using Client.ServiceReference1;
 using Server;
 using System;
+using System.Linq;
 
 namespace Client
 {
@@ -17,15 +18,24 @@ namespace Client
 
             var reminders = client.GetReminders();
 
-            foreach (var reminder in reminders.Reminders)
-            {
-                if (reminder is AppoinmentSmsSend)
-                {
-                    var appointmentSmsSend = reminder as AppoinmentSmsSend;
+            var smsReminders = reminders.Reminders.Where(p => p.ReminderAction == ReminderActionType.AppointmentSmsSend);
 
-                    Console.WriteLine(appointmentSmsSend.Phonenumber);
-                    Console.WriteLine(appointmentSmsSend.ReminderAction.ToString());
-                }
+            foreach (var smsReminder in smsReminders)
+            {
+                var appointmentSmsSend = smsReminder as AppoinmentSmsSend;
+
+                Console.WriteLine($"SmsReminder {appointmentSmsSend.Phonenumber}");
+                Console.WriteLine($"SmsReminder {appointmentSmsSend.ReminderAction.ToString()}");
+            }
+
+            var emailReminders = reminders.Reminders.Where(p => p.ReminderAction == ReminderActionType.AppointmentEmailSend);
+
+            foreach (var emailReminder in emailReminders)
+            {
+                var appointmentEmailSend = emailReminder as AppointmentEmailSend;
+
+                Console.WriteLine($"EmailReminder {appointmentEmailSend.Email}");
+                Console.WriteLine($"EmailReminder {appointmentEmailSend.ReminderAction.ToString()}");
             }
 
             Console.ReadLine();
